@@ -1,5 +1,5 @@
 import React from "react"
-import logo from "./assets/dfinity.svg"
+import logo from "./assets/100_on_chain-stripe-white_text.svg"
 /*
  * Connect2ic provides essential utilities for IC app development
  */
@@ -29,10 +29,26 @@ import { Profile } from "./components/Profile"
 import { Dao } from "./components/dao"
 
 function App() {
+  type Proposal = {
+    id: bigint
+    status: string
+    vote: bigint
+    pageText: string
+  }
+  type Result = { ok: Proposal } | { err: string }
+
+  type Result_1 = { ok: null } | { err: string }
+
+  type Result_2 = { ok: Array<Proposal> } | { err: string }
+
+  type Result_3 = { ok: Array<string> } | { err: string }
+
   interface _SERVICE {
     getPageText: () => Promise<string>
+    get_all_proposals: () => Promise<Result_2>
+    submit_proposal: (arg_0: string) => Promise<Result_1>
+    vote: (arg_0: bigint, string) => Promise<Result>
   }
-  const [daoText, setDaoText] = React.useState("")
 
   return (
     <div className="App">
@@ -42,18 +58,14 @@ function App() {
       <ConnectDialog />
 
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <Dao />
         <p className="twitter">
           {" "}
           <a href="https://twitter.com/enterTheChain">@enterTheChain</a>
         </p>
       </header>
-
-      <p className="examples-title">Examples</p>
-      <div className="examples">
-        <Profile />
-        <Transfer />
+      <div className="App-body">
+        <img src={logo} className="App-logo" alt="logo" />
       </div>
     </div>
   )

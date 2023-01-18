@@ -138,7 +138,6 @@ actor Dao {
     };
 
     public shared ({ caller }) func submit_proposal(text : Text) : async Result.Result<(), Text> {
-        //TODO check if user has MB tokens
 
         let principalId = Principal.toText(caller);
         let tokenBalance = await getMBTokenBalance(principalId);
@@ -184,9 +183,8 @@ actor Dao {
     };
 
     public shared ({ caller }) func vote(id : Nat, vote : Text) : async Result.Result<Proposal, Text> {
-        //TODO check if user has MB tokens and calculate voting power
-        //vote y or n ( y is +1* voting power, n is -1 * voting power)
 
+        //todo scale voting power correctly for token balance
         //temp return for voting power
         let principalId = Principal.toText(caller);
         let tokenBalance = await getMBTokenBalance(principalId);
