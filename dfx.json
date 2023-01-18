@@ -16,8 +16,13 @@
     "dao": {
       "main": "mb/canisters/dao/dao.mo",
       "type": "motoko"
-    }
-  },
+    },
+ 
+  "webpage": {
+    "main": "mb/canisters/webpage/webpage.mo",
+    "type": "motoko"
+  }
+},
 
   "defaults": {
     "build": {
