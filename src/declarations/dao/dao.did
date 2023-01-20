@@ -1,3 +1,18 @@
+type VoteOptions = 
+ variant {
+   no;
+   yes;
+ };
+type Result_5 = 
+ variant {
+   err: text;
+   ok: Neuron;
+ };
+type Result_4 = 
+ variant {
+   err: text;
+   ok: vec Proposal;
+ };
 type Result_3 = 
  variant {
    err: text;
@@ -6,7 +21,7 @@ type Result_3 =
 type Result_2 = 
  variant {
    err: text;
-   ok: vec Proposal;
+   ok: text;
  };
 type Result_1 = 
  variant {
@@ -25,16 +40,35 @@ type Proposal =
    status: text;
    vote: int;
  };
+type NeuronState = 
+ variant {
+   dissolved;
+   dissolving;
+   locked;
+ };
+type Neuron = 
+ record {
+   created: int;
+   id: nat;
+   principalId: text;
+   proposalId: nat;
+   stake: nat;
+   stakeReleaseDate: int;
+   state: NeuronState;
+   vote: int;
+ };
 service : {
   adminReset: () -> () oneway;
+  createNeuron: (int) -> (Result_5);
   getMBTokenBalance: (text) -> (nat);
-  getMembers: () -> (Result_3) query;
   getPageText: () -> (text) query;
   getProposalId: () -> (text) query;
-  get_all_proposals: () -> (Result_2);
+  get_all_proposals: () -> (Result_4);
   get_proposal: (nat) -> (Result);
-  registerMember: (text) -> (Result_1);
+  get_votes_by_principal: () -> (Result_3);
+  quadratic_voting: (VoteOptions, nat) -> (Result_2);
   submit_proposal: (text) -> (Result_1);
-  unregisterMember: (text) -> (Result_1);
-  vote: (nat, text) -> (Result);
+  update_dao_text: () -> ();
+  vote: (nat, VoteOptions, text, nat) -> (Result);
+  whoAmI: () -> (text) query;
 }

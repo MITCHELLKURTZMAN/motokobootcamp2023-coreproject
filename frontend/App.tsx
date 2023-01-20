@@ -27,6 +27,8 @@ import { _SERVICE } from "src/declarations/dao/dao.did"
 import { Transfer } from "./components/Transfer"
 import { Profile } from "./components/Profile"
 import { Dao } from "./components/dao"
+import TWITTER_ICON from "./assets/twitter.svg"
+import BGIMG from "./assets/DALL·E 2022-08-03 08.33.15 - an man in a space suit floating in space welding an oil drum, digital art.png"
 
 function App() {
   type Proposal = {
@@ -58,14 +60,22 @@ function App() {
       <ConnectDialog />
 
       <header className="App-header">
-        <Dao />
-        <p className="twitter">
-          {" "}
-          <a href="https://twitter.com/enterTheChain">@enterTheChain</a>
-        </p>
+        <a>1. get MB tokens</a>
+        <a>2. Create Proposal</a>
+        <a>3. Vote </a>
+        <a>4. View Certified DAO Text</a>
       </header>
+
       <div className="App-body">
+        <p className="twitter">
+          <Dao />{" "}
+        </p>
+        <img className="BGIMG" src={BGIMG} alt="bg" />
         <img src={logo} className="App-logo" alt="logo" />
+        <div className="footer">
+          <img src={TWITTER_ICON} className="twitter-icon" alt="twitter" />
+          <a href="https://twitter.com/enterTheChain">@enterTheChain</a>
+        </div>
       </div>
     </div>
   )

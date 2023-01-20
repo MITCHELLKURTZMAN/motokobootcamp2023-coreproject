@@ -7,6 +7,7 @@ font-family: 'Permanent Marker', cursive;
     -moz-osx-font-smoothing: grayscale;
     color: #ffffff;
     background: #000000;
+    
 }
 
 .pageText{
@@ -24,23 +25,55 @@ font-family: 'Permanent Marker', cursive;
 
 @keyframes glowDfinityColors {
     0% {
-        filter: drop-shadow( 0px 0px 20px #FBB03B);
+        filter: drop-shadow( 0px 0px 110px #FBB03B);
     }
     25% {
-        filter: drop-shadow( 0px 0px 20px #ED1E79);
+        filter: drop-shadow( 0px 0px 110px #ED1E79);
     }
     50% {
-        filter: drop-shadow(0px 0px 20px #522785);
+        filter: drop-shadow(0px 0px 110px #522785);
     }
     75% {
-        filter: drop-shadow( 0px 0px 20px #29ABE2);
+        filter: drop-shadow( 0px 0px 110px #29ABE2);
     }
     100% {
-        filter: drop-shadow(0px 0px 20px #FBB03B);
+        filter: drop-shadow(0px 0px 110px #FBB03B);
     }
 }
 
+@keyframes glowGold {
+    0% {
+        transform: scale(0.99);
+        filter: drop-shadow( 0px 0px 50px #FBB03B);
+    }
+    25% {
+        transform: scale(1);
+        filter: drop-shadow( 0px 0px 80px #FBB03B);
+    }
+    50% {
+        transform: scale(0.99);
+        filter: drop-shadow(0px 0px 100px #FBB03B);
+    }
+    75% {
+        transform: scale(1);
+        filter: drop-shadow( 0px 0px 80px #FBB03B);
+    }
+    100% {
+        transform: scale(0.99);
+        filter: drop-shadow(0px 0px 60px #FBB03B);
+    }
 
+    
+}
+
+
+.footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100vh;
+    
+}
 
 button {
     font-weight: 600;
@@ -56,9 +89,39 @@ button {
    
 }
 
+a {
+    color: #FBB03B;
+    cursor: pointer;
+    animation: glowGold 10s ease-in-out infinite;
+}
+a:hover {
+    text-decoration: underline;
+
+
+}
+
+
+a:visited {
+    color: #FBB03B;
+}
+.BGIMG{
+    object-fit: contain;
+    max-width: 100%;
+}
+
+
+
+.twitter-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 5px;
+    filter: invert(100%);
+}
+
 .App-logo {
 display: flex;
 align-items: center;
+margin-top: -20px;
 
 
 }
@@ -76,6 +139,7 @@ align-items: center;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
+    animation: glowGold 10s ease-in-out infinite ;
 }
 
 .examples {
@@ -92,15 +156,12 @@ align-items: center;
 }
 
 .example {
-    padding: 50px 50px;
-    min-height: 300px;
+    height: calc(100vh - 70px);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    /*border: 1px solid black;*/
-    /*background: #f4f4f4;*/
-    border-radius: 15px;
+    font-size: calc(10px + 2vmin);
 }
 
 .example-disabled {
