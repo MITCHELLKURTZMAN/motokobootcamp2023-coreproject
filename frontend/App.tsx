@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect } from "react"
 import logo from "./assets/100_on_chain-stripe-white_text.svg"
 /*
  * Connect2ic provides essential utilities for IC app development
@@ -14,67 +14,144 @@ import "@connect2ic/core/style.css"
 /*
  * Import canister definitions like this:
  */
-import * as counter from "../.dfx/local/canisters/counter"
+
 import * as dao from "../.dfx/local/canisters/dao"
 import { _SERVICE } from "src/declarations/dao/dao.did"
 //import { canisterId as daoCanisterId } from "src/declarations/dao"
 //import { getPageText } from "src/declarations/dao/dao.did"
 
-/*
- * Some examples to get you started
- */
-
-import { Transfer } from "./components/Transfer"
-import { Profile } from "./components/Profile"
 import { Dao } from "./components/dao"
 import TWITTER_ICON from "./assets/twitter.svg"
-import BGIMG from "./assets/DALL·E 2022-08-03 08.33.15 - an man in a space suit floating in space welding an oil drum, digital art.png"
+import GITHUB_ICON from "./assets/github.svg"
+import ICP from "./assets/Motoko_logo_text_-_white.png"
+import { useCanister } from "@connect2ic/react"
+//import BGIMG from "./assets/DALL·E 2022-08-03 08.33.15 - an man in a space suit floating in space welding an oil drum, digital art.png"
 
 function App() {
-  type Proposal = {
-    id: bigint
-    status: string
-    vote: bigint
-    pageText: string
-  }
-  type Result = { ok: Proposal } | { err: string }
+  const [principalId, setPrincipalId] = React.useState<string>("")
+  const [dao] = useCanister("dao")
 
-  type Result_1 = { ok: null } | { err: string }
-
-  type Result_2 = { ok: Array<Proposal> } | { err: string }
-
-  type Result_3 = { ok: Array<string> } | { err: string }
-
-  interface _SERVICE {
-    getPageText: () => Promise<string>
-    get_all_proposals: () => Promise<Result_2>
-    submit_proposal: (arg_0: string) => Promise<Result_1>
-    vote: (arg_0: bigint, string) => Promise<Result>
+  const getPrincipalId = async () => {
+    try {
+      const principalId = (await dao.getPrincipalId()) as string
+      setPrincipalId(principalId)
+    } catch (e) {
+    } finally {
+      alert(principalId)
+    }
   }
 
   return (
     <div className="App">
+      <header className="App-header">
+        <h1 className="cool-header">About the Demo</h1>
+        <p
+          style={{
+            fontFamily: "none",
+            padding: "0px 50px 0px 50px",
+            fontSize: "medium",
+          }}
+        >
+          Since this project was time restrained and motoko focused, some of the
+          sacrifices were made in the UI/UX to meet backend requirements, so I
+          will explain quickly here how to use:
+          <ul>
+            <li>
+              The first thing you should do is connect your wallet w/ the
+              connect button at the top
+            </li>
+            <li>
+              Next use the{" "}
+              {
+                <button onClick={() => getPrincipalId()}>
+                  {" "}
+                  Click to see principal{" "}
+                </button>
+              }{" "}
+              button grab your principalId and fund your account with{" "}
+              <a href="https://dpzjy-fyaaa-aaaah-abz7a-cai.ic0.app/">
+                MB tokens
+              </a>
+            </li>
+            <li>
+              At this point you can create/vote on proposals. For added voting
+              power, you can create a neuron 👇
+            </li>
+            <li>
+              Next you can create a neuron, you can set the stake and a dissolve
+              delay to which the tokens are stored at a subaccount that is
+              controlled by the dao.
+            </li>
+          </ul>
+          <p>
+            {" "}
+            Here is the{" "}
+            <a href=" https://ushh5-caaaa-aaaak-ad72a-cai.ic0.app/">
+              blackholed canister
+            </a>{" "}
+            with the "certified" text.{" "}
+          </p>
+          <p>
+            If there are any issues with the UI/UX here is the{" "}
+            <a href="https://a4gq6-oaaaa-aaaab-qaa4q-cai.raw.ic0.app/?id=dctdl-jaaaa-aaaag-abd5q-cai">
+              {" "}
+              Candid Interface
+            </a>
+          </p>
+        </p>
+
+        {/* <span>Your principalId is: {principalId}</span> */}
+      </header>
       <div className="auth-section">
-        <ConnectButton />
+        <ConnectButton
+          onConnect={() => {
+            console.log("Connected")
+
+            console.log("principalId", principalId)
+          }}
+        />
+        {/* <span> MB TOKENS: </span> */}
       </div>
       <ConnectDialog />
 
-      <header className="App-header">
-        <a>1. get MB tokens</a>
-        <a>2. Create Proposal</a>
-        <a>3. Vote </a>
-        <a>4. View Certified DAO Text</a>
-      </header>
-
       <div className="App-body">
-        <p className="twitter">
-          <Dao />{" "}
-        </p>
-        <img className="BGIMG" src={BGIMG} alt="bg" />
+        <Dao principalId={principalId} /> <p className="twitter"></p>
+        {/* <img
+          className="BGIMG"
+          style={{ marginTop: "10px" }}
+          src={BGIMG}
+          alt="bg"
+        /> */}
         <img src={logo} className="App-logo" alt="logo" />
         <div className="footer">
-          <img src={TWITTER_ICON} className="twitter-icon" alt="twitter" />
-          <a href="https://twitter.com/enterTheChain">@enterTheChain</a>
+          <div>
+            <div>
+              <div className="social-container">
+                <img
+                  src={TWITTER_ICON}
+                  className="twitter-icon"
+                  alt="twitter"
+                />
+                <a href="https://twitter.com/enterTheChain">@enterTheChain</a>
+              </div>
+              <div className="social-container">
+                <img
+                  src={GITHUB_ICON}
+                  className="twitter-icon"
+                  alt="Github icon"
+                />
+                <a href="https://github.com/MITCHELLKURTZMAN/motokobootcamp2023-coreproject">
+                  MITCHELLKURTZMAN/motokobootcamp
+                </a>
+              </div>
+              <div className="social-container">
+                <span>💀 </span>
+                <a href="https://ushh5-caaaa-aaaak-ad72a-cai.ic0.app/">
+                  View Certified DAO Text
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -84,7 +161,6 @@ function App() {
 const client = createClient({
   canisters: {
     dao,
-    counter,
   },
   providers: defaultProviders,
   globalProviderConfig: {

@@ -36,9 +36,9 @@ actor Self {
         if (caller != Principal.fromText("dctdl-jaaaa-aaaag-abd5q-cai") and caller != Principal.fromText("s55qq-oqaaa-aaaaa-aaakq-cai")) {
             throw Error.reject("Only the DAO canister can update the text 💀")
         };
-        update_asset_hash();
 
-        daoText := msg
+        daoText := msg;
+        update_asset_hash()
     };
 
     // public shared func leave_message(msg : Text) : async () {
@@ -50,8 +50,8 @@ actor Self {
 
     func main_page() : Blob {
         return T.encodeUtf8(
-            "The official DAO text is: " #
-            daoText # " This is a hardcore Challenge from the motokobootcamp demoing certifed variables.",
+            "The official DAO text is: \"" #
+            daoText # "\". This is a hardcore challenge from motoko bootcamp 2023 demoing certifed variables." # " Notice the the address of this page ends with ic0.app and not raw.ic0.app. The raw variation would indicate the variable was uncertified, with this implementation this paragraph and the variable are guaranteed by consensus of the internet computer blockchain. This canister is also blackholed, meaning any typos I find down the road will remain forever on chain.  ",
         )
     };
 

@@ -1,37 +1,40 @@
-type VoteOptions = 
- variant {
-   no;
-   yes;
- };
+type Subaccount = vec nat8;
 type Result_5 = 
- variant {
-   err: text;
-   ok: Neuron;
- };
-type Result_4 = 
  variant {
    err: text;
    ok: vec Proposal;
  };
-type Result_3 = 
+type Result_4 = 
  variant {
    err: text;
    ok: vec text;
  };
-type Result_2 = 
+type Result_3 = 
  variant {
    err: text;
    ok: text;
  };
-type Result_1 = 
+type Result_2 = 
  variant {
    err: text;
    ok;
+ };
+type Result_1 = 
+ variant {
+   err: text;
+   ok: Neuron;
  };
 type Result = 
  variant {
    err: text;
    ok: Proposal;
+ };
+type PublicChat = 
+ record {
+   chatId: nat;
+   created: int;
+   message: text;
+   ownerPrincipal: text;
  };
 type Proposal = 
  record {
@@ -49,26 +52,34 @@ type NeuronState =
 type Neuron = 
  record {
    created: int;
+   disolveDelay: int;
    id: nat;
-   principalId: text;
-   proposalId: nat;
+   ownerPrincipal: text;
    stake: nat;
-   stakeReleaseDate: int;
    state: NeuronState;
-   vote: int;
+   subAccount: Subaccount;
  };
 service : {
-  adminReset: () -> () oneway;
-  createNeuron: (int) -> (Result_5);
+  createMessage: (text) -> ();
+  createNeuron: (int, int) -> (Result_1);
+  dissolveNeuron: (text) -> (Result_1);
+  getChat: () -> (vec PublicChat) query;
   getMBTokenBalance: (text) -> (nat);
+  getNeuron: () -> (Result_1) query;
   getPageText: () -> (text) query;
+  getPrincipalId: () -> (text) query;
   getProposalId: () -> (text) query;
-  get_all_proposals: () -> (Result_4);
-  get_proposal: (nat) -> (Result);
-  get_votes_by_principal: () -> (Result_3);
-  quadratic_voting: (VoteOptions, nat) -> (Result_2);
-  submit_proposal: (text) -> (Result_1);
+  getVotePercent: (nat) -> (int) query;
+  get_all_proposals: () -> (Result_5) query;
+  get_proposal: (nat) -> (Result) query;
+  get_subaccount_to_lock_tokens: () -> (vec nat8) query;
+  get_votes_by_principal: () -> (Result_4) query;
+  isblackhole: () -> (text) query;
+  neuronVote: (bool, nat) -> (Result_3);
+  quadratic_voting: (bool, nat) -> (Result_3);
+  submit_proposal: (text) -> (Result_2);
+  updateNeuron: (text, bool, opt int) -> (Result_1);
   update_dao_text: () -> ();
-  vote: (nat, VoteOptions, text, nat) -> (Result);
+  vote: (nat, bool, text, nat) -> (Result);
   whoAmI: () -> (text) query;
 }

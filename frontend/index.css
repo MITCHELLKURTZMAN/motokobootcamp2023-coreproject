@@ -12,8 +12,33 @@ font-family: 'Permanent Marker', cursive;
 
 .pageText{
 
-/* animation: glowDfinityColors 5s ease-in-out infinite alternate; */
+animation: textNudge 15s ease-in-out infinite;
+padding: 20px;
+text-align: center;
 
+
+}
+.social-container{
+    display: flex;
+    margin-top: 20px;
+}
+
+@keyframes textNudge{
+    0%{
+        transform: translate(0px, 0px);
+    }
+    25%{
+        transform: translate(0px, 10px);
+    }
+    50%{
+        transform: translate(0px, 0px);
+    }
+    75%{
+        transform: translate(0px, -10px);
+    }
+    100%{
+        transform: translate(0px, 0px);
+    }
 
 }
 /* dfinity colors:
@@ -25,47 +50,59 @@ font-family: 'Permanent Marker', cursive;
 
 @keyframes glowDfinityColors {
     0% {
-        filter: drop-shadow( 0px 0px 110px #FBB03B);
+        filter: drop-shadow( 0px 0px 80px #FBB03B);
     }
     25% {
-        filter: drop-shadow( 0px 0px 110px #ED1E79);
+        filter: drop-shadow( 0px 0px 80px #ED1E79);
     }
     50% {
-        filter: drop-shadow(0px 0px 110px #522785);
+        filter: drop-shadow(0px 0px 80px #522785);
     }
     75% {
-        filter: drop-shadow( 0px 0px 110px #29ABE2);
+        filter: drop-shadow( 0px 0px 80px #29ABE2);
     }
     100% {
-        filter: drop-shadow(0px 0px 110px #FBB03B);
+        filter: drop-shadow(0px 0px 80px #FBB03B);
     }
 }
 
 @keyframes glowGold {
     0% {
         transform: scale(0.99);
-        filter: drop-shadow( 0px 0px 50px #FBB03B);
+        filter: drop-shadow( 0px 0px 50px white);
     }
     25% {
         transform: scale(1);
-        filter: drop-shadow( 0px 0px 80px #FBB03B);
+        filter: drop-shadow( 0px 0px 80px white);
     }
     50% {
         transform: scale(0.99);
-        filter: drop-shadow(0px 0px 100px #FBB03B);
+        filter: drop-shadow(0px 0px 100px white);
     }
     75% {
         transform: scale(1);
-        filter: drop-shadow( 0px 0px 80px #FBB03B);
+        filter: drop-shadow( 0px 0px 80px white);
     }
     100% {
         transform: scale(0.99);
-        filter: drop-shadow(0px 0px 60px #FBB03B);
+        filter: drop-shadow(0px 0px 60px white);
     }
 
     
 }
 
+.neuron-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 30px;
+}
+.Neuron-form{
+    
+    filter: drop-shadow(0px 0px 90px white);
+    /* border-bottom: 1px solid; */
+    padding: 10px;
+}
 
 .footer{
     display: flex;
@@ -73,10 +110,30 @@ font-family: 'Permanent Marker', cursive;
     align-items: center;
     height: 100vh;
     
+    
+}
+
+.proposal-header{
+    font-size: small;
+    padding:10px;
+}
+
+.proposal-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+padding: 20px;
+    text-align: center;
+    height: calc(100Vh);
+ 
 }
 
 button {
     font-weight: 600;
+    border-radius: 10px;
+    background-color: #F0ECCF;
 }
 
 .slogan {
@@ -90,9 +147,10 @@ button {
 }
 
 a {
-    color: #FBB03B;
+    color: #A3BB98;
     cursor: pointer;
     animation: glowGold 10s ease-in-out infinite;
+    text-decoration: none;
 }
 a:hover {
     text-decoration: underline;
@@ -102,7 +160,8 @@ a:hover {
 
 
 a:visited {
-    color: #FBB03B;
+    color: #A3BB98;
+    text-decoration: none;
 }
 .BGIMG{
     object-fit: contain;
@@ -122,6 +181,7 @@ a:visited {
 display: flex;
 align-items: center;
 margin-top: -20px;
+filter: drop-shadow(0 0 10px black);
 
 
 }
@@ -133,15 +193,18 @@ margin-top: -20px;
 }
 
 .App-header {
-    height: calc(100vh - 70px);
+    height: calc(120vh);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
-    animation: glowGold 10s ease-in-out infinite ;
+    /* animation: glowGold 10s ease-in-out infinite ; */
 }
 
+.cool-header {
+   animation:glowGold 10s ease-in-out infinite ;
+}
 .examples {
     padding: 30px 100px;
     display: grid;
@@ -156,12 +219,18 @@ margin-top: -20px;
 }
 
 .example {
-    height: calc(100vh - 70px);
+    
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     font-size: calc(10px + 2vmin);
+}
+
+.proposals{
+    padding: 10px;
+    filter: drop-shadow(0 0 100px white);
+    
 }
 
 .example-disabled {
@@ -202,18 +271,266 @@ margin-top: -20px;
     0% {
         transform: scale(0.97);
         opacity: 1;
-        filter: drop-shadow(0 0 0 #FBB03B);
+        filter: drop-shadow(0 0 0 #A3BB98);
     }
 
     70% {
         transform: scale(1);
         opacity: 1;
-        filter: drop-shadow(0 0 10px #FBB03B);
+        filter: drop-shadow(0 0 10px #A3BB98);
     }
 
     100% {
         transform: scale(0.97);
         opacity: 1;
-        filter: drop-shadow(0 0 0 #FBB03B);
+        filter: drop-shadow(0 0 0 #A3BB98);
     }
 }
+
+
+.loadingspinner {
+    --square: 26px;
+    --offset: 30px;
+    --duration: 2.4s;
+    --delay: 0.2s;
+    --timing-function: ease-in-out;
+    --in-duration: 0.4s;
+    --in-delay: 0.1s;
+    --in-timing-function: ease-out;
+    width: calc( 3 * var(--offset) + var(--square));
+    height: calc( 2 * var(--offset) + var(--square));
+    padding: 0px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    position: relative;
+  }
+  
+  .loadingspinner div {
+    display: inline-block;
+    background: #A3BB98;
+      /*background: var(--text-color);*/
+      /*box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.4);*/
+    border: none;
+    border-radius: 2px;
+    width: var(--square);
+    height: var(--square);
+    position: absolute;
+    padding: 0px;
+    margin: 0px;
+    font-size: 6pt;
+    color: black;
+  }
+  
+  .loadingspinner #square1 {
+    left: calc( 0 * var(--offset) );
+    top: calc( 0 * var(--offset) );
+    animation: square1 var(--duration) var(--delay) var(--timing-function) infinite,
+                 squarefadein var(--in-duration) calc(1 * var(--in-delay)) var(--in-timing-function) both;
+  }
+  
+  .loadingspinner #square2 {
+    left: calc( 0 * var(--offset) );
+    top: calc( 1 * var(--offset) );
+    animation: square2 var(--duration) var(--delay) var(--timing-function) infinite,
+                squarefadein var(--in-duration) calc(1 * var(--in-delay)) var(--in-timing-function) both;
+  }
+  
+  .loadingspinner #square3 {
+    left: calc( 1 * var(--offset) );
+    top: calc( 1 * var(--offset) );
+    animation: square3 var(--duration) var(--delay) var(--timing-function) infinite,
+                 squarefadein var(--in-duration) calc(2 * var(--in-delay)) var(--in-timing-function) both;
+  }
+  
+  .loadingspinner #square4 {
+    left: calc( 2 * var(--offset) );
+    top: calc( 1 * var(--offset) );
+    animation: square4 var(--duration) var(--delay) var(--timing-function) infinite,
+                 squarefadein var(--in-duration) calc(3 * var(--in-delay)) var(--in-timing-function) both;
+  }
+  
+  .loadingspinner #square5 {
+    left: calc( 3 * var(--offset) );
+    top: calc( 1 * var(--offset) );
+    animation: square5 var(--duration) var(--delay) var(--timing-function) infinite,
+                 squarefadein var(--in-duration) calc(4 * var(--in-delay)) var(--in-timing-function) both;
+  }
+  
+  @keyframes square1 {
+    0% {
+      left: calc( 0 * var(--offset) );
+      top: calc( 0 * var(--offset) );
+    }
+  
+    8.333% {
+      left: calc( 0 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    100% {
+      left: calc( 0 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  }
+  
+  @keyframes square2 {
+    0% {
+      left: calc( 0 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    8.333% {
+      left: calc( 0 * var(--offset) );
+      top: calc( 2 * var(--offset) );
+    }
+  
+    16.67% {
+      left: calc( 1 * var(--offset) );
+      top: calc( 2 * var(--offset) );
+    }
+  
+    25.00% {
+      left: calc( 1 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    83.33% {
+      left: calc( 1 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    91.67% {
+      left: calc( 1 * var(--offset) );
+      top: calc( 0 * var(--offset) );
+    }
+  
+    100% {
+      left: calc( 0 * var(--offset) );
+      top: calc( 0 * var(--offset) );
+    }
+  }
+  
+  @keyframes square3 {
+    0%,100% {
+      left: calc( 1 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    16.67% {
+      left: calc( 1 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    25.00% {
+      left: calc( 1 * var(--offset) );
+      top: calc( 0 * var(--offset) );
+    }
+  
+    33.33% {
+      left: calc( 2 * var(--offset) );
+      top: calc( 0 * var(--offset) );
+    }
+  
+    41.67% {
+      left: calc( 2 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    66.67% {
+      left: calc( 2 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    75.00% {
+      left: calc( 2 * var(--offset) );
+      top: calc( 2 * var(--offset) );
+    }
+  
+    83.33% {
+      left: calc( 1 * var(--offset) );
+      top: calc( 2 * var(--offset) );
+    }
+  
+    91.67% {
+      left: calc( 1 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  }
+  
+  @keyframes square4 {
+    0% {
+      left: calc( 2 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    33.33% {
+      left: calc( 2 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    41.67% {
+      left: calc( 2 * var(--offset) );
+      top: calc( 2 * var(--offset) );
+    }
+  
+    50.00% {
+      left: calc( 3 * var(--offset) );
+      top: calc( 2 * var(--offset) );
+    }
+  
+    58.33% {
+      left: calc( 3 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    100% {
+      left: calc( 3 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  }
+  
+  @keyframes square5 {
+    0% {
+      left: calc( 3 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    50.00% {
+      left: calc( 3 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    58.33% {
+      left: calc( 3 * var(--offset) );
+      top: calc( 0 * var(--offset) );
+    }
+  
+    66.67% {
+      left: calc( 2 * var(--offset) );
+      top: calc( 0 * var(--offset) );
+    }
+  
+    75.00% {
+      left: calc( 2 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  
+    100% {
+      left: calc( 2 * var(--offset) );
+      top: calc( 1 * var(--offset) );
+    }
+  }
+  
+  @keyframes squarefadein {
+    0% {
+      transform: scale(0.75);
+      opacity: 0.0;
+    }
+  
+    100% {
+      transform: scale(1.0);
+      opacity: 1.0;
+    }
+  }
